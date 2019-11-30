@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "SiteInfo")
-public class SiteInfo {
+public class SiteInfo implements  Comparable<SiteInfo> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -101,5 +101,10 @@ public class SiteInfo {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    @Override
+    public int compareTo(SiteInfo o) {
+        return (int) (id-o.id);
     }
 }

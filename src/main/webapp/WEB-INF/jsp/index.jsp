@@ -237,6 +237,7 @@
                     <c:if test="${site.status=='WARNING'}">
                         <div class="double-flash">
                     <span>
+                        <audio src=""></audio>
                             ${site.status}
                             <ion-icon size="large" name="bulb"> ${site.status}</ion-icon>
                     </span>
@@ -245,6 +246,7 @@
                     <c:if test="${site.status=='CRITICAL'}">
                         <div class="critical">
                     <span>
+                        <audio src=""></audio>
                             ${site.status}
                     </span>
                         </div>
@@ -258,17 +260,17 @@
                             edit
                         </button>
                         <form method="POST" action="/activate">
-                        <c:if test="${site.monitoringActive=='true'}">
-                            <button type="submit" value="${site.id}" name="action" class="btn btn-outline-dark">
-                                deactivate
-                            </button>
-                        </c:if>
-                        <c:if test="${site.monitoringActive=='false'}">
-                            <button type="submit" value="${site.id}" name="action" class="btn btn-outline-dark">
-                                Active
-                            </button>
-                        </c:if>
-                    </form>
+                            <c:if test="${site.monitoringActive=='true'}">
+                                <button type="submit" value="${site.id}" name="action" class="btn btn-outline-dark">
+                                    deactivate
+                                </button>
+                            </c:if>
+                            <c:if test="${site.monitoringActive=='false'}">
+                                <button type="submit" value="${site.id}" name="action" class="btn btn-outline-dark">
+                                    Active
+                                </button>
+                            </c:if>
+                        </form>
                         <form method="POST" action="/action">
                             <button type="submit" class="btn btn-danger" value="${site.id}" name="action">delete
                             </button>
@@ -408,11 +410,5 @@
     })
 </script>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable();
-    } );
-</script>
 </body>
-
 </html>

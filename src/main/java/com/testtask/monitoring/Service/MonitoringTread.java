@@ -3,9 +3,11 @@ package com.testtask.monitoring.Service;
 
 import com.testtask.monitoring.model.SiteModel;
 
+import java.io.IOException;
+
 public class MonitoringTread implements Runnable {
 
-    private  HTTPStatService httpStatService;
+    private HTTPValidation validation;
 
     private SiteService siteService;
 
@@ -20,24 +22,26 @@ public class MonitoringTread implements Runnable {
     public MonitoringTread(SiteService siteService, SiteModel siteModel) {
         this.siteModel = siteModel;
         this.siteService = siteService;
-        this.mSeconds = (siteModel.getSeconds()+siteModel.getMinutes()*60+siteModel.getHours()*60*60 )*1000;
-        this.isActive=true;
-
+        this.mSeconds = (siteModel.getSeconds() + siteModel.getMinutes() * 60 + siteModel.getHours() * 60 * 60) * 1000;
+        this.isActive = true;
     }
 
-    public void disable(){
-        isActive=false;
+    public void disable() {
+        isActive = false;
     }
-
 
     @Override
     public void run() {
         while (isActive) {
             try {
                 Thread.sleep(mSeconds);
-                httpStatService=new HTTPStatService(siteModel);
-                siteService.updateSiteInfo(httpStatService.getStatus(), siteModel.getId());
-            } catch (InterruptedException e) {
+                validation = new HTTPStatService(siteModel);
+                validation.checkTimeResponse();
+                validation.checkSize();
+                validation.checkSubstingInHeader();
+                validation.chcekStatus();
+                siteService.updateSiteInfo(validation.getStatus(), siteModel.getId());
+            } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
         }

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class SiteService {
@@ -60,6 +63,11 @@ public class SiteService {
     }
 
     public Iterable<SiteInfo> getAllSite() {
+        List<SiteInfo> sortedList = new ArrayList<>();
+        for (SiteInfo siteInfo : siteInfoRepository.findAll()) {
+            sortedList.add(siteInfo);
+        }
+        Collections.sort(sortedList);
         return siteInfoRepository.findAll();
     }
 }
