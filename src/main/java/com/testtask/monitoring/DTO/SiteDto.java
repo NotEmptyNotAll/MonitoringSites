@@ -20,6 +20,8 @@ public class SiteDto {
 
     private  int max;
 
+    public SiteDto() {
+    }
 
     public SiteDto(Long id, String url, boolean monitoringActive,
                    String substringInResponse,

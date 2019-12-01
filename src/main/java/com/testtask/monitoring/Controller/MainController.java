@@ -22,6 +22,11 @@ public class MainController {
     @Autowired
     private MonitoringService monitoringService;
 
+    @ModelAttribute("siteModel")
+    public SiteDto orderDto() {
+        return new SiteDto();
+    }
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
         Iterable<SiteInfo> listSite = siteService.getAllSite();

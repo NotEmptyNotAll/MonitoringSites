@@ -1,8 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+          
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -200,79 +200,82 @@
             <th>Action</th>
         </tr>
         </thead>
-        <c:forEach items="${listSite}" var="site" varStatus="loop">
-            <tr class="grow" align="center">
-                <td style="vertical-align: middle;"><span>${site.id}</span></td>
+
+        <div th:each="site:${listSite}">
+            <tr class="grow">
+                <td style="vertical-align: middle;"><span th:utext="${site.id}"></span></td>
                 <td style="vertical-align: middle;">
                     <div style="overflow: hidden; max-width: 50vh">
-                        <a href="${site.url}" class="alert-link">${site.url}</a>
+                        <a th:href="${site.url}" class="alert-link" th:utext="${site.url}"></a>
                     </div>
                 </td>
                 <td>
-                    <c:if test="${site.monitoringActive=='true'}">
+                    <div th:if="${site.monitoringActive==true}">
                         <div class="passing">
                             <span>
                             <ion-icon size="large" name="search"></ion-icon>
                         </span>
                         </div>
-                    </c:if>
-                    <c:if test="${site.monitoringActive=='false'}">
-                        <div class="pulse">
-                            <ion-icon name="remove-circle" size="large"></ion-icon>
-                        </div>
-                    </c:if>
+                    </div>
+                    <div th:if="${site.monitoringActive==false}">
+                        <span>
+                            <div class="pulse">
+                                <ion-icon name="remove-circle" size="large"></ion-icon>
+                            </div>
+                        </span>
+                    </div>
                 </td>
-                <td style="vertical-align: middle;"><span>${site.seconds}</span></td>
-                <td style="vertical-align: middle;"><span>${site.min}-${site.max}</span>
+                <td style="vertical-align: middle;"><span th:utext="${site.seconds}"></span></td>
+                <td style="vertical-align: middle;"><span th:utext="${site.max}"></span>
                 </td>
                 <td style="vertical-align: middle;">
-                    <c:if test="${site.status=='OK'}">
+                    <div th:if="${site.status.equals('OK')}">
                         <div class="float">
                     <span>
-                            ${site.status}
+                        <span th:utext="${site.status}">...</span>
                             <ion-icon size="large" name="checkmark-circle"> ${site.status}</ion-icon>
                     </span>
                         </div>
-                    </c:if>
-                    <c:if test="${site.status=='WARNING'}">
+                    </div>
+                    <div th:if="${site.status.equals('WARNING')}">
                         <div class="double-flash">
                     <span>
                         <audio src=""></audio>
-                            ${site.status}
-                            <ion-icon size="large" name="bulb"> ${site.status}</ion-icon>
+                        <span th:utext="${site.status}">...</span>
+                            <ion-icon size="large" name="bulb"> </ion-icon>
                     </span>
                         </div>
-                    </c:if>
-                    <c:if test="${site.status=='CRITICAL'}">
+                    </div>
+                    <div th:if="${site.status.equals('CRITICAL')}">
                         <div class="critical">
                     <span>
                         <audio src=""></audio>
-                            ${site.status}
+                        <span th:utext="${site.status}">...</span>
                     </span>
                         </div>
-                    </c:if>
+                    </div>
                 </td>
                 <td>
                     <div align="center" class="row ">
                         <button class="btn btn-warning" type="button" data-toggle="collapse"
-                                data-target="#collapseEdit_${site.id}" aria-expanded="false"
+                                th:data-target="'#collapseEdit_'+${site.id}" aria-expanded="false"
                                 aria-controls="collapseExample">
                             edit
                         </button>
                         <form method="POST" action="/activate">
-                            <c:if test="${site.monitoringActive=='true'}">
-                                <button type="submit" value="${site.id}" name="action" class="btn btn-outline-dark">
+                            <div th:if="${site.monitoringActive==true}">
+                                <button type="submit" th:value="${site.id}" name="action" class="btn btn-outline-dark">
                                     deactivate
                                 </button>
-                            </c:if>
-                            <c:if test="${site.monitoringActive=='false'}">
-                                <button type="submit" value="${site.id}" name="action" class="btn btn-outline-dark">
+                            </div>
+                            <div th:if="${site.monitoringActive==false}">
+                                <button type="submit" th:value="${site.id}" name="action" class="btn btn-outline-dark">
                                     Active
                                 </button>
-                            </c:if>
+                            </div>
                         </form>
                         <form method="POST" action="/action">
-                            <button type="submit" class="btn btn-danger" value="${site.id}" name="action">delete
+                            <button type="submit" class="btn btn-danger" th:value="${site.id}" name="action">delete
                             </button>
                         </form>
                     </div>
@@ -280,9 +283,9 @@
             </tr>
             <tr>
                 <td colspan="7">
-                    <div class="collapse" id="collapseEdit_${site.id}">
+                    <div class="collapse" th:id="'collapseEdit_'+${site.id}">
                         <div class="card card-body">
-                            <form class="form-horizontal" method="POST" action="/editSite">
+                            <form th:action="@{/editSite}" th:object="${siteModel}" method="post">
 
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -290,19 +293,19 @@
                                     </div>
                                     <input type="text" aria-label="hour" class="form-control" placeholder="hour"
                                            name="hours"
-                                           value="${siteDto.hours }"/>
+                                           th:field="*{hours}"/>
                                     <input type="text" aria-label="minutes" class="form-control" placeholder="minutes"
-                                           name="minutes" value="${siteDto.minutes }"/>
+                                           name="minutes" th:field="*{minutes}"/>
                                     <input type="text" aria-label="seconds" class="form-control" placeholder="seconds"
-                                           name="seconds" value="${siteDto.seconds }"/>
+                                           name="seconds" th:field="*{seconds}"/>
                                 </div>
 
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">edit min</span>
                                     </div>
-                                    <input type="text" class="form-control" name="min" value="${siteDto.min }"/>
-                                    <input type="text" class="form-control" name="max" value="${siteDto.max }"/>
+                                    <input type="text" class="form-control" name="min" th:field="*{min}"/>
+                                    <input type="text" class="form-control" name="max" th:field="*{max}"/>
                                     <div class="input-group-append">
                                         <span class="input-group-text">edit max</span>
                                     </div>
@@ -314,11 +317,12 @@
                                               id="substringEdit">enter your expected substring</span>
                                     </div>
                                     <input type="text" class="form-control" aria-describedby="substringEdit"
-                                           name="substringInResponse" value="${siteDto.substringInResponse }"/>
+                                           name="substringInResponse" th:field="*{substringInResponse}"/>
                                 </div>
 
                                 <div class="wrapper">
-                                    <button type="submit" name="action" value="${site.id}" class="btn btn-primary">
+                                    <button type="submit" name="action" th:value="${site.id}"
+                                            class="btn btn-primary">
                                         edit site
                                     </button>
                                 </div>
@@ -328,7 +332,8 @@
                     </div>
                 </td>
             </tr>
-        </c:forEach>
+        </div>
+
     </table>
     <div class="wrapper">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">add site
@@ -344,14 +349,14 @@
                     <h1 align="center">
                         form create
                     </h1>
-                    <form class="form-horizontal" method="POST" action="/addSite">
+                    <form th:action="@{/addSite}" th:object="${siteModel}" method="post">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Url</span>
                             </div>
                             <input type="text" class="form-control" id="basic-url"
                                    placeholder="Recipient's username"
-                                   aria-describedby="basic-addon3" name="url" value="${siteDto.url}"/>
+                                   aria-describedby="basic-addon3" name="url" th:field="*{url}"/>
                         </div>
 
                         <div class="input-group">
@@ -359,19 +364,19 @@
                                 <span class="input-group-text">monitoring period</span>
                             </div>
                             <input type="text" aria-label="hour" class="form-control" placeholder="hour" name="hours"
-                                   value="${siteDto.hours }"/>
+                                   th:field="*{hours}"/>
                             <input type="text" aria-label="minutes" class="form-control" placeholder="minutes"
-                                   name="minutes" value="${siteDto.minutes }"/>
+                                   name="minutes" th:field="*{minutes}"/>
                             <input type="text" aria-label="seconds" class="form-control" placeholder="seconds"
-                                   name="seconds" value="${siteDto.seconds }"/>
+                                   name="seconds" th:field="*{seconds}"/>
                         </div>
 
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">min</span>
                             </div>
-                            <input type="text" class="form-control" name="min" value="${siteDto.min }"/>
-                            <input type="text" class="form-control" name="max" value="${siteDto.max }"/>
+                            <input type="text" class="form-control" name="min" th:field="*{min}"/>
+                            <input type="text" class="form-control" name="max" th:field="*{max}"/>
                             <div class="input-group-append">
                                 <span class="input-group-text">max</span>
                             </div>
@@ -382,7 +387,7 @@
                                 <span class="input-group-text" id="substring">enter your expected substring</span>
                             </div>
                             <input type="text" class="form-control" aria-describedby="substring"
-                                   name="substringInResponse" value="${siteDto.substringInResponse }"/>
+                                   name="substringInResponse" th:field="*{substringInResponse}"/>
                         </div>
 
                         <div class="wrapper">
