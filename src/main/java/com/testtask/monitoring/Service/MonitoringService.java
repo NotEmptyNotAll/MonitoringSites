@@ -1,6 +1,6 @@
 package com.testtask.monitoring.Service;
 
-import com.testtask.monitoring.model.SiteModel;
+import com.testtask.monitoring.DTO.SiteDto;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -11,10 +11,10 @@ public class MonitoringService {
 
     private Map<Long, MonitoringTread> treadMap = new HashMap<>();
 
-    public void launchNewMonitoring(SiteService siteService, SiteModel siteModel) {
-        MonitoringTread monitoringTread = new MonitoringTread(siteService, siteModel);
+    public void launchNewMonitoring(SiteService siteService, SiteDto siteDto) {
+        MonitoringTread monitoringTread = new MonitoringTread(siteService, siteDto);
         monitoringTread.start();
-        treadMap.put(siteModel.getId(), monitoringTread);
+        treadMap.put(siteDto.getId(), monitoringTread);
     }
 
     public void stopMonitoring(Long id) {

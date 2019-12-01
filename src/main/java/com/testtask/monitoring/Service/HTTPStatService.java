@@ -1,6 +1,6 @@
 package com.testtask.monitoring.Service;
 
-import com.testtask.monitoring.model.SiteModel;
+import com.testtask.monitoring.DTO.SiteDto;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -26,14 +26,14 @@ public class HTTPStatService implements HTTPValidation {
 
     private ArrayList<String> listResponse = new ArrayList<>();
 
-    private SiteModel siteModel;
+    private SiteDto siteDto;
 
 
-    public HTTPStatService(SiteModel siteModel) {
+    public HTTPStatService(SiteDto siteDto) {
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(siteModel.getUrl());
-            this.siteModel = siteModel;
+            HttpGet request = new HttpGet(siteDto.getUrl());
+            this.siteDto = siteDto;
             this.start = System.currentTimeMillis();
             this.response = client.execute(request);
             this.end = System.currentTimeMillis();
@@ -60,7 +60,7 @@ public class HTTPStatService implements HTTPValidation {
         responseSize = this.response.getEntity().getContentLength();
         if (responseSize == -1)
             responseSize = EntityUtils.toByteArray(this.response.getEntity()).length;
-        if (responseSize > siteModel.getMax() || responseSize < siteModel.getMin()) {
+        if (responseSize > siteDto.getMax() || responseSize < siteDto.getMin()) {
             this.status = STATUS_CRITICAL;
         }
         return status;
@@ -79,10 +79,10 @@ public class HTTPStatService implements HTTPValidation {
     }
 
     public String checkSubstingInHeader() {
-        if (!siteModel.getSubstringInResponse().equals("")) {
+        if (!siteDto.getSubstringInResponse().equals("")) {
             for (String tempStr :
                     listResponse) {
-                if (!tempStr.contains(siteModel.getSubstringInResponse())) {
+                if (!tempStr.contains(siteDto.getSubstringInResponse())) {
                     status = STATUS_CRITICAL;
                 }
             }

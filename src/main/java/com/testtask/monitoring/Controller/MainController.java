@@ -1,7 +1,7 @@
 package com.testtask.monitoring.Controller;
 
+import com.testtask.monitoring.DTO.SiteDto;
 import com.testtask.monitoring.Service.MonitoringService;
-import com.testtask.monitoring.model.SiteModel;
 import com.testtask.monitoring.Entity.SiteInfo;
 import com.testtask.monitoring.Service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +30,19 @@ public class MainController {
         return "index";
     }
 
+
+        public String update() {
+            return "redirect:/index";
+        }
+
+
     @PostMapping("/editSite")
-    public String editSiteInfo(@ModelAttribute("siteModel") SiteModel siteModel,
+    public String editSiteInfo(@ModelAttribute("siteModel") SiteDto siteDto,
                                BindingResult bindingResult, @RequestParam Long action,
                                HttpServletRequest request) {
-        siteModel.setMonitoringActive(false);
-        siteModel.setId(action);
-        siteService.updateSite(siteModel);
+        siteDto.setMonitoringActive(false);
+        siteDto.setId(action);
+        siteService.updateSite(siteDto);
         return "redirect:/index";
     }
 
@@ -50,26 +56,26 @@ public class MainController {
 
     @PostMapping("/activate")
     public String activate(@RequestParam String action) {
-        SiteModel siteModel = siteService.getSiteById(Long.parseLong(action));
+        SiteDto siteDto = siteService.getSiteById(Long.parseLong(action));
 
-        if (siteModel.isMonitoringActive()) {
-            monitoringService.stopMonitoring(siteModel.getId());
-            siteModel.setMonitoringActive(false);
-            siteService.updateSiteMonitoringActive(siteModel.getId(), siteModel.isMonitoringActive());
+        if (siteDto.isMonitoringActive()) {
+            monitoringService.stopMonitoring(siteDto.getId());
+            siteDto.setMonitoringActive(false);
+            siteService.updateSiteMonitoringActive(siteDto.getId(), siteDto.isMonitoringActive());
         } else {
-            monitoringService.launchNewMonitoring(siteService, siteModel);
-            siteModel.setMonitoringActive(true);
-            siteService.updateSiteMonitoringActive(siteModel.getId(), siteModel.isMonitoringActive());
+            monitoringService.launchNewMonitoring(siteService, siteDto);
+            siteDto.setMonitoringActive(true);
+            siteService.updateSiteMonitoringActive(siteDto.getId(), siteDto.isMonitoringActive());
         }
         return "redirect:/index";
     }
 
     @PostMapping("/addSite")
-    public String addSiteInfo(@ModelAttribute("siteModel") SiteModel siteModel,
+    public String addSiteInfo(@ModelAttribute("siteModel") SiteDto siteDto,
                               BindingResult bindingResult,
                               HttpServletRequest request) throws IOException {
-        siteModel.setMonitoringActive(false);
-        siteService.saveSite(siteModel);
+        siteDto.setMonitoringActive(false);
+        siteService.saveSite(siteDto);
         return "redirect:/index";
     }
 

@@ -1,6 +1,6 @@
-package com.testtask.monitoring.model;
+package com.testtask.monitoring.DTO;
 
-public class SiteModel {
+public class SiteDto {
 
     private Long id;
 
@@ -21,9 +21,9 @@ public class SiteModel {
     private  int max;
 
 
-    public SiteModel(Long id, String url, boolean monitoringActive,
-                     String substringInResponse,
-                     int seconds, int min, int max) {
+    public SiteDto(Long id, String url, boolean monitoringActive,
+                   String substringInResponse,
+                   int seconds, int min, int max) {
         this.id = id;
         this.url = url;
         this.monitoringActive = monitoringActive;
@@ -33,8 +33,6 @@ public class SiteModel {
         this.max = max;
     }
 
-    public SiteModel() {
-    }
 
     public Long getId() {
         return id;
@@ -110,7 +108,7 @@ public class SiteModel {
 
     @Override
     public String toString() {
-        return "SiteModel{" +
+        return "SiteDto{" +
                 "url='" + url + '\'' +
                 ", monitoringActive=" + monitoringActive +
                 ", substringInResponse='" + substringInResponse + '\'' +

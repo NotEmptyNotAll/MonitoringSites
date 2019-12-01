@@ -1,4 +1,4 @@
-package com.testtask.monitoring.Repository;
+package com.testtask.monitoring.DAO;
 
 import com.testtask.monitoring.Entity.SiteInfo;
 import org.springframework.data.jpa.repository.Modifying;

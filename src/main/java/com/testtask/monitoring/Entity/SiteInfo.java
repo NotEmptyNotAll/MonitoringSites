@@ -107,4 +107,18 @@ public class SiteInfo implements  Comparable<SiteInfo> {
     public int compareTo(SiteInfo o) {
         return (int) (id-o.id);
     }
+
+    @Override
+    public String toString() {
+        return "SiteInfo{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", monitoringActive=" + monitoringActive +
+                ", substringInResponse='" + substringInResponse + '\'' +
+                ", status='" + status + '\'' +
+                ", seconds=" + seconds +
+                ", min=" + min +
+                ", max=" + max +
+                '}';
+    }
 }

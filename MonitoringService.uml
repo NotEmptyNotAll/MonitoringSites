@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.testtask.monitoring.Service.MonitoringService</OriginalElement>
+  <nodes>
+    <node x="1202.646205357143" y="104.0">com.testtask.monitoring.ServletInitializer</node>
+    <node x="229.54883965466354" y="11.0">com.testtask.monitoring.DTO.SiteDto</node>
+    <node x="81.42383965466354" y="358.0">com.testtask.monitoring.Service.HTTPStatService</node>
+    <node x="323.81071059622207" y="1491.0">com.testtask.monitoring.Service.MonitoringTread</node>
+    <node x="1280.146205357143" y="0.0">com.testtask.monitoring.MonitoringApplication</node>
+    <node x="676.6875" y="739.0">com.testtask.monitoring.Service.SiteService</node>
+    <node x="819.1462053571429" y="469.5">com.testtask.monitoring.DAO.SiteInfoRepository</node>
+    <node x="823.9059825118063" y="0.0">com.testtask.monitoring.Entity.SiteInfo</node>
+    <node x="0.0" y="22.0">com.testtask.monitoring.Service.HTTPValidation</node>
+    <node x="339.3204877508855" y="1043.0">com.testtask.monitoring.Service.MonitoringService</node>
+    <node x="517.6875" y="1192.0">com.testtask.monitoring.Controller.MainController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.testtask.monitoring.ServletInitializer" target="com.testtask.monitoring.MonitoringApplication">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Controller.MainController" target="com.testtask.monitoring.Entity.SiteInfo">
+      <point x="148.49999999999997" y="-104.5" />
+      <point x="864.1875" y="1167.0" />
+      <point x="1135.646205357143" y="1167.0" />
+      <point x="1135.646205357143" y="328.0" />
+      <point x="1092.5309825118063" y="328.0" />
+      <point x="115.125" y="149.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.MonitoringTread" target="com.testtask.monitoring.Service.HTTPStatService">
+      <point x="-86.5454545454545" y="-127.0" />
+      <point x="356.26525605076756" y="1461.0" />
+      <point x="125.64404392955532" y="1461.0" />
+      <point x="125.64404392955532" y="719.0" />
+      <point x="116.25717298799685" y="719.0" />
+      <point x="-69.66666666666669" y="160.5" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.MonitoringTread" target="com.testtask.monitoring.DTO.SiteDto">
+      <point x="-43.27272727272725" y="-127.0" />
+      <point x="399.5379833234948" y="1441.0" />
+      <point x="328.8204877508855" y="1441.0" />
+      <point x="328.8204877508855" y="338.0" />
+      <point x="361.23633965466354" y="338.0" />
+      <point x="-18.8125" y="138.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.DAO.SiteInfoRepository" target="com.testtask.monitoring.Entity.SiteInfo">
+      <point x="0.0" y="-49.0" />
+      <point x="966.6462053571429" y="338.0" />
+      <point x="939.0309825118063" y="338.0" />
+      <point x="-38.375" y="149.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.MonitoringService" target="com.testtask.monitoring.Service.SiteService">
+      <point x="74.0" y="-49.5" />
+      <point x="561.3204877508855" y="1023.0" />
+      <point x="713.6875" y="1023.0" />
+      <point x="-111.0" y="127.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.SiteService" target="com.testtask.monitoring.DAO.SiteInfoRepository">
+      <point x="84.57142857142856" y="-127.0" />
+      <point x="909.2589285714286" y="709.0" />
+      <point x="966.6462053571429" y="709.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Controller.MainController" target="com.testtask.monitoring.DTO.SiteDto">
+      <point x="-49.5" y="-104.5" />
+      <point x="666.1875" y="1167.0" />
+      <point x="645.8204877508855" y="1167.0" />
+      <point x="645.8204877508855" y="338.0" />
+      <point x="436.48633965466354" y="338.0" />
+      <point x="56.4375" y="138.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Controller.MainController" target="com.testtask.monitoring.Service.SiteService">
+      <point x="49.5" y="-104.5" />
+      <point x="765.1875" y="1167.0" />
+      <point x="787.6875" y="1167.0" />
+      <point x="-37.0" y="127.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.MonitoringTread" target="com.testtask.monitoring.Service.SiteService">
+      <point x="86.54545454545456" y="-127.0" />
+      <point x="529.3561651416766" y="1461.0" />
+      <point x="1146.646205357143" y="1461.0" />
+      <point x="1146.646205357143" y="1023.0" />
+      <point x="861.6875" y="1023.0" />
+      <point x="37.0" y="127.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.SiteService" target="com.testtask.monitoring.DTO.SiteDto">
+      <point x="-42.285714285714334" y="-127.0" />
+      <point x="782.4017857142857" y="699.0" />
+      <point x="725.0607105962221" y="699.0" />
+      <point x="725.0607105962221" y="328.0" />
+      <point x="474.11133965466354" y="328.0" />
+      <point x="94.0625" y="138.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Controller.MainController" target="com.testtask.monitoring.Service.MonitoringService">
+      <point x="-148.5" y="-104.5" />
+      <point x="567.1875" y="1167.0" />
+      <point x="598.3204877508855" y="1167.0" />
+      <point x="111.0" y="49.5" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.MonitoringTread" target="com.testtask.monitoring.Controller.MainController">
+      <point x="64.90909090909088" y="-127.0" />
+      <point x="507.71980150531294" y="1451.0" />
+      <point x="814.6875" y="1451.0" />
+      <point x="99.0" y="104.5" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.MonitoringTread" target="com.testtask.monitoring.Service.HTTPValidation">
+      <point x="-108.18181818181813" y="-127.0" />
+      <point x="334.62889241440394" y="1471.0" />
+      <point x="64.63281250000006" y="1471.0" />
+      <point x="64.63281250000006" y="338.0" />
+      <point x="34.0" y="338.0" />
+      <point x="-68.0" y="127.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.MonitoringService" target="com.testtask.monitoring.DTO.SiteDto">
+      <point x="-74.0" y="-49.5" />
+      <point x="413.3204877508855" y="338.0" />
+      <point x="398.86133965466354" y="338.0" />
+      <point x="18.8125" y="138.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.SiteService" target="com.testtask.monitoring.Service.HTTPStatService">
+      <point x="-84.57142857142856" y="-127.0" />
+      <point x="740.1160714285714" y="709.0" />
+      <point x="255.59050632133022" y="709.0" />
+      <point x="69.66666666666669" y="160.5" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.HTTPStatService" target="com.testtask.monitoring.Service.HTTPValidation">
+      <point x="-26.125" y="-160.5" />
+      <point x="159.79883965466354" y="338.0" />
+      <point x="170.0" y="338.0" />
+      <point x="68.0" y="127.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.HTTPStatService" target="com.testtask.monitoring.DTO.SiteDto">
+      <point x="26.125" y="-160.5" />
+      <point x="212.04883965466354" y="338.0" />
+      <point x="248.36133965466354" y="338.0" />
+      <point x="-131.6875" y="138.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.MonitoringService" target="com.testtask.monitoring.Service.MonitoringTread">
+      <point x="-111.0" y="49.5" />
+      <point x="376.3204877508855" y="1167.0" />
+      <point x="431.81071059622207" y="1167.0" />
+      <point x="431.81071059622207" y="1471.0" />
+      <point x="421.17434695985844" y="1471.0" />
+      <point x="-21.636363636363626" y="-127.0" />
+    </edge>
+    <edge source="com.testtask.monitoring.Service.SiteService" target="com.testtask.monitoring.Entity.SiteInfo">
+      <point x="42.285714285714334" y="-127.0" />
+      <point x="866.9732142857143" y="709.0" />
+      <point x="808.6462053571429" y="709.0" />
+      <point x="808.6462053571429" y="338.0" />
+      <point x="862.2809825118063" y="338.0" />
+      <point x="-115.125" y="149.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6000000000000001" x="356.3809523809525" y="569.6666666666665" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

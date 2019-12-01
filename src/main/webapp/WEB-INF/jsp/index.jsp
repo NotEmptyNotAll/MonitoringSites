@@ -253,7 +253,7 @@
                     </c:if>
                 </td>
                 <td>
-                    <div class="row">
+                    <div align="center" class="row ">
                         <button class="btn btn-warning" type="button" data-toggle="collapse"
                                 data-target="#collapseEdit_${site.id}" aria-expanded="false"
                                 aria-controls="collapseExample">
@@ -275,14 +275,11 @@
                             <button type="submit" class="btn btn-danger" value="${site.id}" name="action">delete
                             </button>
                         </form>
-
-
                     </div>
                 </td>
             </tr>
             <tr>
                 <td colspan="7">
-
                     <div class="collapse" id="collapseEdit_${site.id}">
                         <div class="card card-body">
                             <form class="form-horizontal" method="POST" action="/editSite">
@@ -293,19 +290,19 @@
                                     </div>
                                     <input type="text" aria-label="hour" class="form-control" placeholder="hour"
                                            name="hours"
-                                           value="${siteModel.hours }"/>
+                                           value="${siteDto.hours }"/>
                                     <input type="text" aria-label="minutes" class="form-control" placeholder="minutes"
-                                           name="minutes" value="${siteModel.minutes }"/>
+                                           name="minutes" value="${siteDto.minutes }"/>
                                     <input type="text" aria-label="seconds" class="form-control" placeholder="seconds"
-                                           name="seconds" value="${siteModel.seconds }"/>
+                                           name="seconds" value="${siteDto.seconds }"/>
                                 </div>
 
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">edit min</span>
                                     </div>
-                                    <input type="text" class="form-control" name="min" value="${siteModel.min }"/>
-                                    <input type="text" class="form-control" name="max" value="${siteModel.max }"/>
+                                    <input type="text" class="form-control" name="min" value="${siteDto.min }"/>
+                                    <input type="text" class="form-control" name="max" value="${siteDto.max }"/>
                                     <div class="input-group-append">
                                         <span class="input-group-text">edit max</span>
                                     </div>
@@ -317,7 +314,7 @@
                                               id="substringEdit">enter your expected substring</span>
                                     </div>
                                     <input type="text" class="form-control" aria-describedby="substringEdit"
-                                           name="substringInResponse" value="${siteModel.substringInResponse }"/>
+                                           name="substringInResponse" value="${siteDto.substringInResponse }"/>
                                 </div>
 
                                 <div class="wrapper">
@@ -354,7 +351,7 @@
                             </div>
                             <input type="text" class="form-control" id="basic-url"
                                    placeholder="Recipient's username"
-                                   aria-describedby="basic-addon3" name="url" value="${siteModel.url}"/>
+                                   aria-describedby="basic-addon3" name="url" value="${siteDto.url}"/>
                         </div>
 
                         <div class="input-group">
@@ -362,19 +359,19 @@
                                 <span class="input-group-text">monitoring period</span>
                             </div>
                             <input type="text" aria-label="hour" class="form-control" placeholder="hour" name="hours"
-                                   value="${siteModel.hours }"/>
+                                   value="${siteDto.hours }"/>
                             <input type="text" aria-label="minutes" class="form-control" placeholder="minutes"
-                                   name="minutes" value="${siteModel.minutes }"/>
+                                   name="minutes" value="${siteDto.minutes }"/>
                             <input type="text" aria-label="seconds" class="form-control" placeholder="seconds"
-                                   name="seconds" value="${siteModel.seconds }"/>
+                                   name="seconds" value="${siteDto.seconds }"/>
                         </div>
 
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">min</span>
                             </div>
-                            <input type="text" class="form-control" name="min" value="${siteModel.min }"/>
-                            <input type="text" class="form-control" name="max" value="${siteModel.max }"/>
+                            <input type="text" class="form-control" name="min" value="${siteDto.min }"/>
+                            <input type="text" class="form-control" name="max" value="${siteDto.max }"/>
                             <div class="input-group-append">
                                 <span class="input-group-text">max</span>
                             </div>
@@ -385,7 +382,7 @@
                                 <span class="input-group-text" id="substring">enter your expected substring</span>
                             </div>
                             <input type="text" class="form-control" aria-describedby="substring"
-                                   name="substringInResponse" value="${siteModel.substringInResponse }"/>
+                                   name="substringInResponse" value="${siteDto.substringInResponse }"/>
                         </div>
 
                         <div class="wrapper">
