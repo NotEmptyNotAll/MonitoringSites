@@ -6,19 +6,19 @@ public class SiteDto {
 
     private String url;
 
-    private  boolean monitoringActive;
+    private boolean monitoringActive;
 
     private String substringInResponse;
 
     private int hours;
 
-    private  int minutes;
+    private int minutes;
 
-    private  int seconds;
+    private int seconds;
 
-    private  int min;
+    private int min;
 
-    private  int max;
+    private int max;
 
     public SiteDto() {
     }

@@ -24,7 +24,7 @@ public class SiteService {
     }
 
     public void saveSite(SiteDto siteDto) throws IOException {
-       httpStatService = new HTTPStatService(siteDto);
+        httpStatService = new HTTPStatService(siteDto);
         int seconds = convertToSeconds(siteDto.getHours(),
                 siteDto.getMinutes(), siteDto.getSeconds());
         SiteInfo siteInfo = new SiteInfo(siteDto.getUrl(), siteDto.isMonitoringActive(),
@@ -36,30 +36,30 @@ public class SiteService {
     }
 
 
-    public  void  updateSiteInfo(String status, Long id){
-       // httpStatService= new HTTPStatService(url);
-        siteInfoRepository.update(id,status);
+    public void updateSiteInfo(String status, Long id) {
+        // httpStatService= new HTTPStatService(url);
+        siteInfoRepository.update(id, status);
     }
 
-    public void updateSite(SiteDto siteDto){
-            siteInfoRepository.updateSiteInfo(siteDto.getId(),
-                    siteDto.getMax(), siteDto.getMin(),
-                    siteDto.isMonitoringActive(), siteDto.getSeconds());
+    public void updateSite(SiteDto siteDto) {
+        siteInfoRepository.updateSiteInfo(siteDto.getId(),
+                siteDto.getMax(), siteDto.getMin(),
+                siteDto.isMonitoringActive(), siteDto.getSeconds());
     }
 
-    public  void  updateSiteMonitoringActive(Long id, boolean monitoringActive){
-        siteInfoRepository.updateMonitoringActive(id,monitoringActive);
+    public void updateSiteMonitoringActive(Long id, boolean monitoringActive) {
+        siteInfoRepository.updateMonitoringActive(id, monitoringActive);
     }
 
     public void deleteSite(Long id) {
         siteInfoRepository.deleteById(id);
     }
 
-    public SiteDto getSiteById(Long id){
-        SiteInfo siteInfo =siteInfoRepository.findById(id).get();
-        return new SiteDto(siteInfo.getId(),siteInfo.getUrl(),siteInfo.isMonitoringActive(),
-                siteInfo.getSubstringInResponse(),siteInfo.getSeconds(),
-                siteInfo.getMin(),siteInfo.getMax());
+    public SiteDto getSiteById(Long id) {
+        SiteInfo siteInfo = siteInfoRepository.findById(id).get();
+        return new SiteDto(siteInfo.getId(), siteInfo.getUrl(), siteInfo.isMonitoringActive(),
+                siteInfo.getSubstringInResponse(), siteInfo.getSeconds(),
+                siteInfo.getMin(), siteInfo.getMax());
     }
 
     public List<SiteInfo> getAllSite() {

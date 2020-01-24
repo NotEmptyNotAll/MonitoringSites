@@ -36,9 +36,9 @@ public class MainController {
     }
 
 
-        public String update() {
-            return "redirect:/index";
-        }
+    public String update() {
+        return "redirect:/index";
+    }
 
 
     @PostMapping("/editSite")
@@ -66,11 +66,13 @@ public class MainController {
         if (siteDto.isMonitoringActive()) {
             monitoringService.stopMonitoring(siteDto.getId());
             siteDto.setMonitoringActive(false);
-            siteService.updateSiteMonitoringActive(siteDto.getId(), siteDto.isMonitoringActive());
+            siteService.updateSiteMonitoringActive(siteDto.getId(),
+                                                                        siteDto.isMonitoringActive());
         } else {
             monitoringService.launchNewMonitoring(siteService, siteDto);
             siteDto.setMonitoringActive(true);
-            siteService.updateSiteMonitoringActive(siteDto.getId(), siteDto.isMonitoringActive());
+            siteService.updateSiteMonitoringActive(siteDto.getId(),
+                                                                        siteDto.isMonitoringActive());
         }
         return "redirect:/index";
     }

@@ -5,6 +5,7 @@ import com.testtask.monitoring.Controller.MainController;
 import com.testtask.monitoring.DTO.SiteDto;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MonitoringTread implements Runnable {
 
@@ -49,6 +50,8 @@ public class MonitoringTread implements Runnable {
             }
         }
     }
+
+
 
     public void start() {
         System.out.println("Thread started");
